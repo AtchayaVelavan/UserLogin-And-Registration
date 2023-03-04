@@ -1,0 +1,6 @@
+C:\Users\COMPAQ\Desktop\Gitproject\UserRegistration\UserRegistration\bin\Debug\UserRegistration.exe.config
+C:\Users\COMPAQ\Desktop\Gitproject\UserRegistration\UserRegistration\bin\Debug\UserRegistration.exe
+C:\Users\COMPAQ\Desktop\Gitproject\UserRegistration\UserRegistration\bin\Debug\UserRegistration.pdb
+C:\Users\COMPAQ\Desktop\Gitproject\UserRegistration\UserRegistration\obj\Debug\UserRegistration.exe
+C:\Users\COMPAQ\Desktop\Gitproject\UserRegistration\UserRegistration\obj\Debug\UserRegistration.pdb
+C:\Users\COMPAQ\Desktop\Gitproject\UserRegistration\UserRegistration\obj\Debug\UserRegistration.csprojResolveAssemblyReference.cache
