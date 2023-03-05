@@ -102,79 +102,79 @@ namespace UserRegistration
               string emailid = Console.ReadLine();
               Console.Write("PassWord:");
               string password = Console.ReadLine();
-            int count=0;
-            while (count <=0)
-             {
+              bool success = false;
+              do
+              {
 
-                     string password2 = password;
-                     SqlConnection con = new SqlConnection();
-                     con.ConnectionString = "Server=DESKTOP-S9M63N0\\SQLEXPRESS;Database=UserRegistration;integrated security=true;";
-              try
-               {
-                         con.Open();
-                }
-                     catch (Exception e)
-                     {
-                         throw new Exception("connection is not proper");
-                     }
-                     SqlCommand comm = new SqlCommand();
-                     comm.Connection = con;
-                     comm.CommandText = "select Emailid from registration where Emailid='" + emailid + "'";
-                     string Emailid = (string)comm.ExecuteScalar();
-                     if (Emailid != emailid)
-                     {
-                         Console.WriteLine("Ur Email id is Not in the list Pls Register");
-                         register();
-                     }
-                     comm.CommandText = "select  Passcode from registration where Emailid='" + emailid+ "'";
-                     string passcode = (string)comm.ExecuteScalar();
-                      if (password2 == passcode)
+                  string password2 = password;
+                  SqlConnection con = new SqlConnection();
+                  con.ConnectionString = "Server=DESKTOP-S9M63N0\\SQLEXPRESS;Database=UserRegistration;integrated security=true;";
+                  try
+                  {
+                      con.Open();
+                  }
+                  catch (Exception e)
+                  {
+                      throw new Exception("connection is not proper");
+                  }
+                  SqlCommand comm = new SqlCommand();
+                  comm.Connection = con;
+                  comm.CommandText = "select Emailid from registration where Emailid='" + emailid + "'";
+                  string Emailid = (string)comm.ExecuteScalar();
+                  if (Emailid != emailid)
+                  {
+                      Console.WriteLine("Ur Email id is Not in the list Pls Register");
+                      register();
+                  }
+                  comm.CommandText = "select  Passcode from registration where Emailid='" + emailid + "'";
+                  string passcode = (string)comm.ExecuteScalar();
+                  if (password2 == passcode)
+                  {
+                      Console.WriteLine("Login Successfully");
+                      success = true;
+                      break;
+                  }
+                  else if (passcode != password2)
+                  {
 
-                     {
-                         Console.WriteLine("Login Successfully");
-                         count = count + 2;
-                     }
-                     else if (passcode != password2)
-                     {
-                         
-                         Console.WriteLine("Password is wrong");
-                         Console.WriteLine("Choose An Option");
+                      Console.WriteLine("Password is wrong");
+                      Console.WriteLine("Choose An Option");
 
-                         Console.WriteLine("1.Re Enter The PassWord");
-                         Console.WriteLine("2.Forgot Password");
-                         Console.Write("Enter Ur Choice:");
-                         int a = int.Parse(Console.ReadLine());
-                         if (a == 1)
-                         {
-                             Console.Write("Password:");
-                             string repassword = Console.ReadLine();
-                            
-                             password = repassword;
-                             count  -= 1;
-                         }
-                         if (a == 2)
-                         {
-                             Console.WriteLine("Enter Ur New Password");
-                             string newpassword = Console.ReadLine();
-                             Registration r = new Registration();
-                             r.Password = newpassword;
-                             comm.CommandText ="update registration SET passcode='" + newpassword + "' where Emailid='" +emailid+ "'";
-                             comm.ExecuteNonQuery();
-                             
-                             Console.WriteLine("Changed");
-                             count +=1;
+                      Console.WriteLine("1.Re Enter The PassWord");
+                      Console.WriteLine("2.Forgot Password");
+                      Console.Write("Enter Ur Choice:");
+                      int a = int.Parse(Console.ReadLine());
+                      if (a == 1)
+                      {
+                          Console.Write("Password:");
+                          string repassword = Console.ReadLine();
 
-                             login();
+                          password = repassword;
 
-                         }
-                     }
-                     else
-                     {
-                         Console.WriteLine("Not register pls Register");
-                         count += 1;
-                         register();
-                     }
-               }
+                      }
+                      if (a == 2)
+                      {
+                          Console.WriteLine("Enter Ur New Password");
+                          string newpassword = Console.ReadLine();
+                          //Registration r = new Registration();
+                          //r.Password = newpassword;
+                          comm.CommandText = "update registration SET passcode='" + newpassword + "' where Emailid='" + emailid + "'";
+                          comm.ExecuteNonQuery();
+
+                          Console.WriteLine("Changed");
+
+
+                          login();
+
+                      }
+                  }
+                  else
+                  {
+                      Console.WriteLine("Not register pls Register");
+
+                      register();
+                  }
+              } while (success == true);
 
 
          }
